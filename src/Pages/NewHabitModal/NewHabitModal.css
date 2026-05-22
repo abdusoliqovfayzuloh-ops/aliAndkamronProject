@@ -1,167 +1,164 @@
 /* =========================================================
-   NEW HABIT MODAL - GLASS UI SYSTEM
-   RESPONSIVE + DARK MODE + ANIMATIONS
+   NEW HABIT MODAL - PREMIUM UI SYSTEM
+   GLASS + DARK MODE + RESPONSIVE + ANIMATIONS
 ========================================================= */
 
-/* =========================================================
+/* =========================
    ROOT VARIABLES
-========================================================= */
+========================= */
 
 :root {
-  --bg-overlay: rgba(15, 15, 20, 0.6);
-  --glass-bg: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.18);
-  --glass-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
+  --bg: #f5f7ff;
+  --text: #111827;
+  --muted: #6b7280;
 
   --primary: #6366f1;
-  --danger: #ef4444;
+  --primary-dark: #4f46e5;
+
   --success: #22c55e;
+  --danger: #ef4444;
 
-  --radius-xl: 24px;
-  --radius-lg: 18px;
-  --radius-md: 12px;
+  --glass: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.3);
 
-  --blur: 18px;
+  --shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
 
-  --transition: 0.25s ease;
+  --radius: 18px;
+  --radius-sm: 12px;
+
+  --transition: all 0.25s ease;
 }
 
-/* =========================================================
+/* =========================
    DARK MODE
-========================================================= */
+========================= */
 
 .dark {
-  --bg-overlay: rgba(0, 0, 0, 0.75);
-  --glass-bg: rgba(20, 20, 30, 0.55);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+  --bg: #0b1220;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
 
-  --text-primary: #f1f5f9;
-  --text-secondary: rgba(241, 245, 249, 0.7);
+  --glass: rgba(15, 23, 42, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
 }
 
-/* =========================================================
+/* =========================
    OVERLAY
-========================================================= */
+========================= */
 
 .glass-overlay {
   position: fixed;
   inset: 0;
-  background: var(--bg-overlay);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   z-index: 9999;
-  animation: fadeIn 0.25s ease forwards;
+
+  animation: fadeIn 0.25s ease;
 }
 
-/* =========================================================
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* =========================
    MODAL CARD
-========================================================= */
+========================= */
 
 .glass-card {
-  width: 100%;
-  max-width: 520px;
-  padding: 2px;
-  border-radius: var(--radius-xl);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.25),
-    rgba(255, 255, 255, 0.05)
-  );
-  box-shadow: var(--glass-shadow);
-  animation: scaleIn 0.3s ease;
+  width: 440px;
+  max-width: 92%;
+  border-radius: var(--radius);
+
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(22px);
+
+  overflow: hidden;
+
+  animation: popIn 0.3s ease;
+  transition: var(--transition);
 }
+
+@keyframes popIn {
+  from {
+    transform: translateY(25px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+}
+
+/* =========================
+   INNER WRAPPER
+========================= */
 
 .glass-card-inner {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(var(--blur));
-  border-radius: var(--radius-xl);
-  padding: 28px;
+  padding: 22px;
   position: relative;
-  overflow: hidden;
 }
 
-/* =========================================================
+/* =========================
    CLOSE BUTTON
-========================================================= */
+========================= */
 
 .glass-close {
   position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 42px;
-  height: 42px;
+  top: 12px;
+  right: 12px;
+
+  width: 38px;
+  height: 38px;
+
   border-radius: 50%;
   border: none;
+
+  background: rgba(255, 255, 255, 0.25);
+  color: var(--text);
+
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text-primary);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   transition: var(--transition);
 }
 
 .glass-close:hover {
-  background: rgba(255, 255, 255, 0.18);
   transform: rotate(90deg);
+  background: rgba(99, 102, 241, 0.2);
 }
 
-.glass-close svg {
-  width: 18px;
-  height: 18px;
-}
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-
-
-/* =========================================================
-   ICON
-========================================================= */
-
-.glass-icon-wrapper {
-  width: 70px;
-  height: 70px;
-  margin: 0 auto;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.glass-icon {
-  font-size: 28px;
-  z-index: 2;
-}
-
-.glass-icon-pulse {
-  position: absolute;
-  width: 120%;
-  height: 100%;
-  border-radius: 50%;
-  background: var(--primary);
-  opacity: 0.25;
-  animation: pulse 2s infinite;
-}
-
-/* =========================================================
+/* =========================
    FORM
-========================================================= */
+========================= */
 
 .glass-form {
+  margin-top: 18px;
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
+
+/* =========================
+   INPUT GROUP
+========================= */
 
 .glass-input-group {
   display: flex;
@@ -171,58 +168,99 @@
 
 .glass-input-group label {
   font-size: 13px;
-  color: var(--text-secondary);
+  color: var(--muted);
+  font-weight: 500;
 }
 
 /* INPUT */
-.glass-input-group input,
-.glass-input-group select {
-  width: 100%;
+.glass-input-group input {
   padding: 12px 14px;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+
+  border: 1px solid var(--glass-border);
+
+  background: rgba(255, 255, 255, 0.25);
+  color: var(--text);
+
   outline: none;
+
   transition: var(--transition);
-  font-size: 14px;
 }
 
-.glass-input-group input:focus,
-.glass-input-group select:focus {
+.dark .glass-input-group input {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.glass-input-group input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
 }
 
-/* =========================================================
-   CUSTOM SELECT
-========================================================= */
+/* =========================
+   MODERN SELECT SYSTEM
+========================= */
 
 .custom-select-container {
   position: relative;
+  width: 100%;
 }
 
-.select-glow {
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-md);
-  pointer-events: none;
-  background: radial-gradient(
-    circle at top left,
-    rgba(99, 102, 241, 0.25),
-    transparent
-  );
-  opacity: 0;
+/* SELECT BASE */
+.custom-select-container select {
+  width: 100%;
+  padding: 12px 14px;
+
+  border-radius: var(--radius-sm);
+
+  border: 1px solid var(--glass-border);
+
+  background: rgba(255, 255, 255, 0.25);
+  color: var(--text);
+
+  appearance: none;
+  cursor: pointer;
+
   transition: var(--transition);
 }
 
-.custom-select-container:hover .select-glow {
-  opacity: 1;
+.dark .custom-select-container select {
+  background: rgba(0, 0, 0, 0.25);
 }
 
-/* =========================================================
+.custom-select-container select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+/* arrow */
+.custom-select-container::after {
+  content: "⌄";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+/* =========================
+   OPTION STYLE (LIMITED)
+========================= */
+
+select option {
+  background: #fff;
+  color: #111827;
+  padding: 10px;
+}
+
+.dark select option {
+  background: #0b1220;
+  color: #e5e7eb;
+}
+
+/* =========================
    ACTION BUTTONS
-========================================================= */
+========================= */
 
 .glass-actions {
   display: flex;
@@ -232,115 +270,61 @@
 
 .glass-btn {
   flex: 1;
-  padding: 12px;
-  border-radius: var(--radius-md);
+  padding: 12px 14px;
+
+  border-radius: var(--radius-sm);
   border: none;
-  cursor: pointer;
+
   font-weight: 600;
+  cursor: pointer;
+
   transition: var(--transition);
-  font-size: 14px;
 }
 
-/* CANCEL */
+/* cancel */
 .glass-btn-cancel {
+  background: rgba(255, 255, 255, 0.25);
+  color: var(--text);
+}
+
+.dark .glass-btn-cancel {
   background: rgba(255, 255, 255, 0.08);
-  color: var(--text-primary);
 }
 
 .glass-btn-cancel:hover {
-  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
 }
 
-/* SUBMIT */
+/* submit */
 .glass-btn-submit {
-  background: var(--primary);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   color: white;
+
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.35);
 }
 
 .glass-btn-submit:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 20px 45px rgba(99, 102, 241, 0.5);
 }
 
-/* =========================================================
-   ANIMATIONS
-========================================================= */
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes scaleIn {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 0.4; }
-  50% { transform: scale(1.3); opacity: 0.1; }
-  100% { transform: scale(1); opacity: 0.4; }
-}
-
-/* =========================================================
-   HOVER MICRO INTERACTIONS
-========================================================= */
-
-.glass-card-inner:hover {
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
-}
-
-.glass-input-group input:hover {
-  border-color: rgba(255, 255, 255, 0.25);
-}
-
-/* =========================================================
-   FOCUS ACCESSIBILITY
-========================================================= */
-
-.glass-btn:focus-visible,
-.glass-close:focus-visible,
-input:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
-}
-
-/* =========================================================
+/* =========================
    RESPONSIVE DESIGN
-========================================================= */
+========================= */
 
-/* 1200px */
-@media (max-width: 1200px) {
+/* tablet */
+@media (max-width: 768px) {
   .glass-card {
-    max-width: 480px;
-  }
-}
-
-/* 992px */
-@media (max-width: 992px) {
-  .glass-card {
-    max-width: 420px;
+    width: 92%;
   }
 
   .glass-card-inner {
-    padding: 22px;
+    padding: 18px;
   }
 }
 
-/* 768px */
-@media (max-width: 768px) {
-  .glass-card {
-    max-width: 92%;
-  }
-
-  .glass-header h2 {
-    font-size: 20px;
-  }
-}
-
-/* 576px */
-@media (max-width: 576px) {
+/* mobile */
+@media (max-width: 480px) {
   .glass-actions {
     flex-direction: column;
   }
@@ -348,88 +332,44 @@ select:focus-visible {
   .glass-btn {
     width: 100%;
   }
-}
 
-/* 420px */
-@media (max-width: 420px) {
-  .glass-card-inner {
-    padding: 18px;
-  }
-
-  .glass-header h2 {
-    font-size: 18px;
+  .glass-close {
+    width: 34px;
+    height: 34px;
   }
 }
 
-/* =========================================================
-   SCROLL (if needed)
-========================================================= */
+/* =========================
+   MICRO INTERACTIONS
+========================= */
 
-.glass-card-inner::-webkit-scrollbar {
-  width: 6px;
+.glass-input-group input::placeholder {
+  color: rgba(100, 100, 100, 0.5);
 }
 
-.glass-card-inner::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
+.dark .glass-input-group input::placeholder {
+  color: rgba(200, 200, 200, 0.35);
 }
 
-/* =========================================================
-   EXTRA GLASS DECORATION LAYERS
-========================================================= */
+/* =========================
+   EXTRA POLISH
+========================= */
 
-.glass-card-inner::before {
+.glass-card::before {
   content: "";
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(99,102,241,0.15), transparent);
-  transform: rotate(25deg);
+  inset: 0;
+
+  background: radial-gradient(
+    circle at top left,
+    rgba(99, 102, 241, 0.15),
+    transparent 60%
+  );
+
   pointer-events: none;
 }
 
-.glass-card-inner::after {
-  content: "";
-  position: absolute;
-  bottom: -60%;
-  right: -60%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(34,197,94,0.08), transparent);
-  pointer-events: none;
+.glass-card-inner {
+  position: relative;
+  z-index: 2;
 }
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* =========================================================
-   EXTRA STATES (FOCUS / ACTIVE / DISABLED)
-========================================================= */
-
-.glass-btn:active {
-  transform: scale(0.97);
-}
-
-.glass-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-input:disabled,
-select:disabled {
-  opacity: 0.6;
-}
-
-/* =========================================================
-   END OF FILE (500+ LINES INTENTIONAL EXTENSION)
-========================================================= */
